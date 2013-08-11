@@ -7,7 +7,7 @@ document.getElementById('g').focus()
 
 document.getElementById('f').addEventListener 'submit', (e) ->
   e.preventDefault()
-  setAnswer ''
+  answerReset()
 
   g = document.getElementById('g').value
   return unless g.length > 0
@@ -19,9 +19,17 @@ document.getElementById('f').addEventListener 'submit', (e) ->
   h.onreadystatechange = ->
     if h.readyState >= 3
       setAnswer switch h.status
-        when 200 then "Yes, there is a gem named #{g}."
-        when 404 then "No, there isn't a gem named #{g}. At least, not yet."
-        else "Hmmm...not sure. There was an issue connecting to rubygems.org."
+        when 200 then "y"
+        when 404 then "n"
+        else "e"
   h.send(null);
 
-setAnswer = (a) -> document.getElementById('a').innerHTML = a
+setAnswer = (i) ->
+  document.getElementById('b').innerHTML = g.value
+  document.getElementById('c').innerHTML = g.value
+  document.getElementById(i).style.display = 'block'
+
+answerReset = ->
+  document.getElementById('y').style.display = 'none'
+  document.getElementById('n').style.display = 'none'
+  document.getElementById('e').style.display = 'none'
