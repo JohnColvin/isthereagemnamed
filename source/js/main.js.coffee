@@ -9,11 +9,15 @@ document.getElementById('f').addEventListener 'submit', (e) ->
   e.preventDefault()
   hideAnswers()
 
-  g = document.getElementById('g').value
-  return unless g.length > 0
+  g = document.getElementById('g')
+  n = g.value
+  g.setAttribute "placeholder", n
+  g.value = ""
+
+  return unless n.length > 0
 
   h = new XMLHttpRequest()
-  u = "http://rubygems.org/api/v1/gems/" + g + '.json'
+  u = "http://rubygems.org/api/v1/gems/" + n + '.json'
 
   h.open "GET", u, true
   h.onreadystatechange = ->
@@ -22,11 +26,11 @@ document.getElementById('f').addEventListener 'submit', (e) ->
         when 200 then "y"
         when 404 then "n"
         else "e"
+      document.getElementById('b').innerHTML = n
+      document.getElementById('c').innerHTML = n
   h.send(null);
 
 showAnswer = (i) ->
-  document.getElementById('b').innerHTML = g.value
-  document.getElementById('c').innerHTML = g.value
   document.getElementById(i).style.display = 'block'
 
 hideAnswers = ->
