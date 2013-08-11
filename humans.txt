@@ -1,0 +1,9 @@
+# humanstxt.org/
+# The humans responsible
+
+# TEAM
+    Developer: John Colvin
+    Twitter: @2john4tv
+
+# THANKS
+    The RubyGems Team
