@@ -8,7 +8,7 @@ document.getElementById('f').addEventListener 'submit', (e) ->
   return unless g.length > 0
 
   h = new XMLHttpRequest()
-  u = "http://localhost:3000/api/v1/gems/" + g + '.json'
+  u = "http://rubygems.org/api/v1/gems/" + g + '.json'
 
   h.open "GET", u, true
   h.onreadystatechange = ->
